@@ -1,14 +1,13 @@
 from __future__ import annotations
 
+import multiprocessing
 import os
 import subprocess
-import multiprocessing
 from typing import TYPE_CHECKING, Any, List, Tuple
 
-from agentverse.logging import get_logger
 from agentverse.agents import ExecutorAgent
+from agentverse.logging import get_logger, logger
 from agentverse.message import ExecutorMessage, SolverMessage
-from agentverse.logging import logger
 
 from . import BaseExecutor, executor_registry
 

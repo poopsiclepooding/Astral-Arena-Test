@@ -4,15 +4,13 @@ from typing import Any, Dict, List, Tuple, Union
 
 from colorama import Fore
 
-from agentverse.environments import BaseEnvironment
 from agentverse.agents.base import BaseAgent
+from agentverse.environments import BaseEnvironment
+from agentverse.environments.tasksolving_env.rules import TasksolvingRule
 from agentverse.logging import logger
-from agentverse.message import Message, SolverMessage, ExecutorMessage
-
+from agentverse.message import ExecutorMessage, Message, SolverMessage
 
 from .. import env_registry as EnvironmentRegistry
-
-from agentverse.environments.tasksolving_env.rules import TasksolvingRule
 
 
 @EnvironmentRegistry.register("task-basic")

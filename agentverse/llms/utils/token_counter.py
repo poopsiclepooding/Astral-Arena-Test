@@ -1,10 +1,12 @@
 # Modified from AutoGPT https://github.com/Significant-Gravitas/AutoGPT/blob/release-v0.4.7/autogpt/llm/utils/token_counter.py
 
+from typing import Dict, List, Union
+
 import tiktoken
-from typing import List, Union, Dict
+
+from agentverse.llms import LOCAL_LLMS, LOCAL_LLMS_MAPPING
 from agentverse.logging import logger
 from agentverse.message import Message
-from agentverse.llms import LOCAL_LLMS, LOCAL_LLMS_MAPPING
 
 
 def count_string_tokens(prompt: str = "", model: str = "gpt-3.5-turbo") -> int:
@@ -12,7 +14,10 @@ def count_string_tokens(prompt: str = "", model: str = "gpt-3.5-turbo") -> int:
         return len(tiktoken.encoding_for_model(model).encode(prompt))
     elif model.lower() in LOCAL_LLMS or model in LOCAL_LLMS:
         from transformers import AutoTokenizer
-        encoding = AutoTokenizer.from_pretrained(LOCAL_LLMS_MAPPING[model.lower()]['hf_model_name'])
+
+        encoding = AutoTokenizer.from_pretrained(
+            LOCAL_LLMS_MAPPING[model.lower()]["hf_model_name"]
+        )
         return len(encoding.encode(prompt))
 
 
@@ -35,7 +40,9 @@ def count_message_tokens(
     elif model.lower() in LOCAL_LLMS or model in LOCAL_LLMS:
         from transformers import AutoTokenizer
 
-        encoding = AutoTokenizer.from_pretrained(LOCAL_LLMS_MAPPING[model.lower()]['hf_model_name'])
+        encoding = AutoTokenizer.from_pretrained(
+            LOCAL_LLMS_MAPPING[model.lower()]["hf_model_name"]
+        )
     else:
         raise NotImplementedError(
             f"count_message_tokens() is not implemented for model {model}.\n"

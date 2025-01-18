@@ -1,12 +1,12 @@
-import os
 import logging
-
-# from agentverse.agentverse import AgentVerse
-from agentverse.tasksolving import TaskSolving
+import os
+from argparse import ArgumentParser
 
 # from agentverse.gui import GUI
 from agentverse.logging import logger
-from argparse import ArgumentParser
+
+# from agentverse.agentverse import AgentVerse
+from agentverse.tasksolving import TaskSolving
 
 parser = ArgumentParser()
 

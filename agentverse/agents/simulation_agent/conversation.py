@@ -1,18 +1,19 @@
 from __future__ import annotations
-from colorama import Fore
 
-# import logging
-from agentverse.logging import get_logger
 import bdb
 from string import Template
 from typing import TYPE_CHECKING, List
 
-from agentverse.message import Message
+from colorama import Fore
 
 # from . import agent_registry
 # from .base import BaseAgent
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
+
+# import logging
+from agentverse.logging import get_logger
+from agentverse.message import Message
 
 logger = get_logger()
 
@@ -39,9 +40,11 @@ class ConversationAgent(BaseAgent):
             logger.error(f"{self.name} failed to generate valid response.")
 
         message = Message(
-            content=""
-            if parsed_response is None
-            else parsed_response.return_values["output"],
+            content=(
+                ""
+                if parsed_response is None
+                else parsed_response.return_values["output"]
+            ),
             sender=self.name,
             receiver=self.get_receiver(),
         )
@@ -73,9 +76,11 @@ class ConversationAgent(BaseAgent):
             logger.error(f"{self.name} failed to generate valid response.")
 
         message = Message(
-            content=""
-            if parsed_response is None
-            else parsed_response.return_values["output"],
+            content=(
+                ""
+                if parsed_response is None
+                else parsed_response.return_values["output"]
+            ),
             sender=self.name,
             receiver=self.get_receiver(),
         )

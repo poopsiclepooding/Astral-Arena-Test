@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import TYPE_CHECKING, List, Tuple, Any
+from typing import TYPE_CHECKING, Any, List, Tuple
 
 from pydantic import BaseModel
 
 from agentverse.agents import ExecutorAgent
-from agentverse.message import SolverMessage, ExecutorMessage
+from agentverse.message import ExecutorMessage, SolverMessage
 
 from . import executor_registry
 
@@ -55,7 +55,7 @@ class NoneExecutor(BaseExecutor):
         **kwargs,
     ) -> Any:
         return [ExecutorMessage(content="")]
-    
+
     async def astep(
         self,
         agent: ExecutorAgent,
@@ -85,7 +85,7 @@ class DummyExecutor(BaseExecutor):
         **kwargs,
     ) -> Any:
         return [ExecutorMessage(content=s.content) for s in solution]
-    
+
     async def astep(
         self,
         agent: ExecutorAgent,

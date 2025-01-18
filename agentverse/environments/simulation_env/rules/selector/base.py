@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from typing import TYPE_CHECKING, List
 
 from pydantic import BaseModel
@@ -7,7 +8,6 @@ from pydantic import BaseModel
 from agentverse.message import Message
 
 from . import selector_registry as SelectorRegistry
-from abc import abstractmethod
 
 if TYPE_CHECKING:
     from agentverse.environments import BaseEnvironment

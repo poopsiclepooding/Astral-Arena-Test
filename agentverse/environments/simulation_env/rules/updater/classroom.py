@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List, Tuple
 
+from agentverse.message import Message
+
 from . import updater_registry as UpdaterRegistry
 from .basic import BasicUpdater
-from agentverse.message import Message
 
 if TYPE_CHECKING:
     from agentverse.environments import BaseEnvironment

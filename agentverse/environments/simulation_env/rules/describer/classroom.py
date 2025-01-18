@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, List
 from string import Template
+from typing import TYPE_CHECKING, Any, List
 
 from . import describer_registry as DescriberRegistry
 from .basic import BasicDescriber

@@ -3,9 +3,10 @@ from __future__ import annotations
 import re
 from typing import TYPE_CHECKING, Any, List, Optional
 
+from agentverse.logging import logger
+
 from . import order_registry as OrderRegistry
 from .base import BaseOrder
-from agentverse.logging import logger
 
 if TYPE_CHECKING:
     from agentverse.environments import BaseEnvironment

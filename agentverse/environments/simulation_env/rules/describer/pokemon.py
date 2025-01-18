@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, List, Optional, Dict
 from copy import deepcopy
+from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
 from . import describer_registry as DescriberRegistry
 from .base import BaseDescriber

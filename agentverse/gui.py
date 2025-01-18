@@ -1,15 +1,15 @@
-import os
 import base64
 import itertools
 import json
+import os
 from typing import Dict, List, Tuple
 
 import cv2
 import gradio as gr
 
 from agentverse import TaskSolving
-from agentverse.simulation import Simulation
 from agentverse.message import Message
+from agentverse.simulation import Simulation
 
 IMG_PATH = os.path.join(os.path.dirname(__file__), "..", "imgs")
 
@@ -278,9 +278,9 @@ class GUI:
         for message in messages:
             if self.task == "simulation/db_diag":
                 content_json: dict = message.content
-                content_json[
-                    "diagnose"
-                ] = f"[{message.sender}]: {content_json['diagnose']}"
+                content_json["diagnose"] = (
+                    f"[{message.sender}]: {content_json['diagnose']}"
+                )
                 _format[self.agent_id[message.sender]]["message"] = json.dumps(
                     content_json
                 )
@@ -290,13 +290,13 @@ class GUI:
                     message_ = "{}\n{}".format(
                         pre_message, json.loads(message_)["feedback"]
                     )
-                    _format[self.agent_id[message.sender]][
-                        "message"
-                    ] = "[{}]: {}".format(message.sender, message_)
+                    _format[self.agent_id[message.sender]]["message"] = (
+                        "[{}]: {}".format(message.sender, message_)
+                    )
                 else:
-                    _format[self.agent_id[message.sender]][
-                        "message"
-                    ] = "[{}]: {}".format(message.sender, message.content)
+                    _format[self.agent_id[message.sender]]["message"] = (
+                        "[{}]: {}".format(message.sender, message.content)
+                    )
 
             else:
                 _format[self.agent_id[message.sender]]["message"] = "[{}]: {}".format(

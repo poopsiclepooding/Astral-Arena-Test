@@ -4,10 +4,10 @@ from typing import Any, Dict, List, Optional, Set
 
 # from agentverse.agents.agent import Agent
 from agentverse.agents.simulation_agent.conversation import BaseAgent
-from agentverse.logging import logger
 
 # from agentverse.environments.simulation_env.rules.base import Rule
 from agentverse.environments.simulation_env.rules.base import SimulationRule as Rule
+from agentverse.logging import logger
 from agentverse.message import Message
 
 from .. import env_registry as EnvironmentRegistry

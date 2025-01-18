@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 import asyncio
+from typing import TYPE_CHECKING, List
+
 from colorama import Fore
 
-from typing import TYPE_CHECKING, List
+from agentverse.logging import logger, typewriter_log
+from agentverse.message import Message
 
 from . import decision_maker_registry
 from .base import BaseDecisionMaker
-from agentverse.logging import typewriter_log, logger
-from agentverse.message import Message
 
 if TYPE_CHECKING:
-    from agentverse.agents import BaseAgent, SolverAgent, CriticAgent
+    from agentverse.agents import BaseAgent, CriticAgent, SolverAgent
     from agentverse.message import SolverMessage
 
 

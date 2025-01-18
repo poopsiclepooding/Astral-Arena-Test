@@ -4,29 +4,23 @@ from __future__ import annotations
 An agent based upon Observation-Planning-Reflection architecture.
 """
 
+import datetime
+from abc import abstractmethod
+from datetime import datetime as dt
 from logging import getLogger
 
-from abc import abstractmethod
-from typing import List, Set, Union, NamedTuple, TYPE_CHECKING
+# from . import agent_registry
+from string import Template
+from typing import TYPE_CHECKING, List, NamedTuple, Set, Union
 
 from pydantic import BaseModel, Field, validator
 
+from agentverse.agents import agent_registry
+from agentverse.agents.base import BaseAgent
 from agentverse.llms import BaseLLM
 from agentverse.memory import BaseMemory, ChatHistoryMemory
 from agentverse.message import Message
 from agentverse.output_parser import OutputParser
-
-from agentverse.message import Message
-from agentverse.agents.base import BaseAgent
-
-from datetime import datetime as dt
-import datetime
-
-#from . import agent_registry
-from string import Template
-
-from agentverse.agents import agent_registry
-from agentverse.agents.base import BaseAgent
 
 logger = getLogger(__file__)
 
@@ -98,9 +92,11 @@ class ReflectionAgent(BaseAgent):
         message = Message(
             content="" if reaction is None else reaction,
             sender=self.name,
-            receiver=self.get_receiver()
-            if target is None
-            else self.get_valid_receiver(target),
+            receiver=(
+                self.get_receiver()
+                if target is None
+                else self.get_valid_receiver(target)
+            ),
         )
 
         self.step_cnt += 1
@@ -157,9 +153,11 @@ class ReflectionAgent(BaseAgent):
         message = Message(
             content="" if reaction is None else reaction,
             sender=self.name,
-            receiver=self.get_receiver()
-            if target is None
-            else self.get_valid_receiver(target),
+            receiver=(
+                self.get_receiver()
+                if target is None
+                else self.get_valid_receiver(target)
+            ),
         )
 
         self.step_cnt += 1

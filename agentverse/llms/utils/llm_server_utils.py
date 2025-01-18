@@ -1,5 +1,7 @@
-import requests
 from typing import Optional
+
+import requests
+
 
 def get_llm_server_modelname(
     base_url: str = "http://localhost:8000", api_key=None, logger=None

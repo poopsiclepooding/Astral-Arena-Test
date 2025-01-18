@@ -1,16 +1,16 @@
 from abc import abstractmethod
-from typing import List, NamedTuple, Set, Union
 from string import Template
+from typing import List, NamedTuple, Set, Union
 
 from pydantic import BaseModel, Field
-from agentverse.llms import BaseLLM
 
-from agentverse.logging import logger
+from agentverse.llms import BaseLLM
 from agentverse.llms.utils import count_string_tokens
+from agentverse.logging import logger
 from agentverse.memory import BaseMemory, ChatHistoryMemory
+from agentverse.memory_manipulator import BaseMemoryManipulator
 from agentverse.message import Message
 from agentverse.output_parser import OutputParser
-from agentverse.memory_manipulator import BaseMemoryManipulator
 
 
 class BaseAgent(BaseModel):

@@ -1,9 +1,11 @@
+from typing import Dict, List, Set
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import Set, List, Dict
-from agentverse.simulation import Simulation
+
 from agentverse.message import Message
+from agentverse.simulation import Simulation
 
 
 class UserRequest(BaseModel):

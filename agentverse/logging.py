@@ -1,14 +1,16 @@
 """Logging module for Auto-GPT."""
+
+import json
 import logging
 import os
 import random
 import re
 import time
-import json
 from logging import LogRecord
 from typing import Any, List
 
 from colorama import Fore, Style
+
 from agentverse.utils import Singleton
 
 
@@ -194,11 +196,13 @@ class Logger(metaclass=Singleton):
         self.debug("", "-=-=-=-=-=-=-=-=Prompt Start-=-=-=-=-=-=-=-=", Fore.MAGENTA)
         for p in prompt:
             self.debug(
-                p["content"]
-                if "function_call" not in p
-                else p["content"]
-                + "\nFunction Call:\n"
-                + json.dumps(p["function_call"]),
+                (
+                    p["content"]
+                    if "function_call" not in p
+                    else p["content"]
+                    + "\nFunction Call:\n"
+                    + json.dumps(p["function_call"])
+                ),
                 title=f'==={p["role"]}===\n',
                 title_color=Fore.MAGENTA,
             )

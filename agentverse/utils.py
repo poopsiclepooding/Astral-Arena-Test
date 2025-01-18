@@ -1,7 +1,6 @@
-from typing import NamedTuple, Union
-from enum import Enum
-
 import abc
+from enum import Enum
+from typing import NamedTuple, Union
 
 
 class AgentAction(NamedTuple):

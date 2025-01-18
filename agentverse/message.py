@@ -1,5 +1,6 @@
+from typing import Any, List, Set, Tuple, Union
+
 from pydantic import BaseModel, Field
-from typing import List, Tuple, Set, Union, Any
 
 from agentverse.utils import AgentAction
 

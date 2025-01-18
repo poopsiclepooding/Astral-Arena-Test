@@ -1,18 +1,20 @@
+import copy
 import json
 import logging
 import os
-from openai import OpenAI
-import copy
-from typing import List, Optional, Tuple, Dict
+from typing import Dict, List, Optional, Tuple
 
+from openai import OpenAI
 from pydantic import Field
 
-from agentverse.message import Message, ExecutorMessage
-from . import memory_registry
-from .base import BaseMemory
-from agentverse.llms.utils import count_message_tokens, count_string_tokens
 from agentverse.llms import OpenAIChat
 from agentverse.llms.openai import DEFAULT_CLIENT as openai_client
+from agentverse.llms.utils import count_message_tokens, count_string_tokens
+from agentverse.message import ExecutorMessage, Message
+
+from . import memory_registry
+from .base import BaseMemory
+
 
 @memory_registry.register("chat_history")
 class ChatHistoryMemory(BaseMemory):
@@ -44,9 +46,11 @@ Latest Development:
         if add_sender_prefix:
             return "\n".join(
                 [
-                    f"[{message.sender}]: {message.content}"
-                    if message.sender != ""
-                    else message.content
+                    (
+                        f"[{message.sender}]: {message.content}"
+                        if message.sender != ""
+                        else message.content
+                    )
                     for message in self.messages
                 ]
             )
@@ -73,9 +77,11 @@ Latest Development:
                         messages.append(
                             {
                                 "role": "assistant",
-                                "content": f"[{message.sender}]: {message.content}"
-                                if message.content != ""
-                                else "",
+                                "content": (
+                                    f"[{message.sender}]: {message.content}"
+                                    if message.content != ""
+                                    else ""
+                                ),
                                 "function_call": {
                                     "name": message.tool_name,
                                     "arguments": json.dumps(message.tool_input),
@@ -206,12 +212,16 @@ Latest Development:
             summary=self.summary, new_events=new_events_batch
         )
 
-        self.summary = await openai_client.chat.completions.acreate(
-            messages=[{"role": "user", "content": prompt}],
-            model=model,
-            max_tokens=max_summary_length,
-            temperature=0.5,
-        ).choices[0].message.content
+        self.summary = (
+            await openai_client.chat.completions.acreate(
+                messages=[{"role": "user", "content": prompt}],
+                model=model,
+                max_tokens=max_summary_length,
+                temperature=0.5,
+            )
+            .choices[0]
+            .message.content
+        )
 
     def summary_message(self) -> dict:
         return {

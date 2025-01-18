@@ -1,15 +1,15 @@
 from __future__ import annotations
 
 from logging import getLogger
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
+from ..message import Message
 from . import memory_manipulator_registry
 from .base import BaseMemoryManipulator
-from ..message import Message
 
 if TYPE_CHECKING:
-    from agentverse.memory import VectorStoreMemory
     from agentverse.agents.reflection_agent import ReflectionAgent
+    from agentverse.memory import VectorStoreMemory
 
 logger = getLogger(__file__)
 
@@ -32,6 +32,7 @@ class Plan(BaseMemoryManipulator):
     """
     Memory manipulator for plan.
     """
+
     memory: VectorStoreMemory = None
     agent: ReflectionAgent = None  # specify ReflectionAgent
     # later considering removing current_time to be more general
@@ -44,19 +45,17 @@ class Plan(BaseMemoryManipulator):
         """
         prompt = self._fill_prompt_template()
         result = self.agent.llm.generate_response(prompt).content
-        result = result.strip('.')
+        result = result.strip(".")
         logger.info(f"{self.agent.name}'s new plan: {result}")
         if result == "No":
             return ""
         else:
             self.plan.append(result)
             plan_message = Message(
-                content=result,
-                sender=self.agent.name,
-                receiver={self.agent.name})
+                content=result, sender=self.agent.name, receiver={self.agent.name}
+            )
             self.agent.memory.add_message([plan_message])
             return result
-
 
     def _fill_prompt_template(self) -> str:
         """Fill the placeholders in the prompt template

@@ -19,6 +19,6 @@ class SdeTeamVisibility(BaseVisibility):
 
     def update_visible_agents(self, environment: BaseEnvironment):
         return
-    
+
     def reset(self):
         return

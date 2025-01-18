@@ -2,14 +2,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List, Tuple
 
+from agentverse.logging import get_logger
+from agentverse.message import Message
+
 from . import updater_registry as UpdaterRegistry
 from .base import BaseUpdater
-from agentverse.message import Message
-from agentverse.logging import get_logger
 
 if TYPE_CHECKING:
-    from agentverse.environments import BaseEnvironment
     from agentverse.agents import BaseAgent
+    from agentverse.environments import BaseEnvironment
 
 logger = get_logger()
 

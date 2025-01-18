@@ -1,13 +1,13 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from typing import TYPE_CHECKING, List, Tuple
-
-from agentverse.agents import BaseAgent
 
 from pydantic import BaseModel
 
-from abc import abstractmethod
+from agentverse.agents import BaseAgent
 from agentverse.message import SolverMessage
+
 from . import decision_maker_registry
 
 

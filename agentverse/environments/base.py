@@ -1,10 +1,11 @@
 from __future__ import annotations
-from agentverse.logging import logger
 
 from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, Dict, List
 
 from pydantic import BaseModel
+
+from agentverse.logging import logger
 
 # from agentverse.agents.agent import Agent
 

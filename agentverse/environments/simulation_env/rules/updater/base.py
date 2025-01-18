@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+# from agentverse.agents import Agent
+from abc import abstractmethod
 from typing import TYPE_CHECKING, List, Tuple
 
 from pydantic import BaseModel
-
-# from agentverse.agents import Agent
-from abc import abstractmethod
 
 from . import updater_registry as UpdaterRegistry
 

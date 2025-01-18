@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import multiprocessing
 import os
 import subprocess
-import multiprocessing
 from typing import TYPE_CHECKING, Any, List, Tuple
 
 from agentverse.agents import ExecutorAgent

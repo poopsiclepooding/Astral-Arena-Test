@@ -1,6 +1,7 @@
+import subprocess
+
 import setuptools
 from setuptools.command.develop import develop
-import subprocess
 
 with open("requirements.txt", "r") as f:
     requirements = f.read().splitlines()
@@ -8,7 +9,7 @@ with open("requirements.txt", "r") as f:
 with open("requirements_local.txt", "r") as f:
     requirements_local = f.read().splitlines()
 
-with open("README.md", "r", encoding='utf8') as fh:
+with open("README.md", "r", encoding="utf8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
@@ -23,7 +24,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        'License :: OSI Approved :: Apache Software License',
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.9",
@@ -41,10 +42,8 @@ setuptools.setup(
     #     "langchain",
     # ],
     install_requires=requirements,
-    extras_require={
-        'local': requirements_local
-    },
-    include_package_data = True,
+    extras_require={"local": requirements_local},
+    include_package_data=True,
     entry_points={
         "console_scripts": [
             "agentverse-benchmark = agentverse_command.benchmark:cli_main",

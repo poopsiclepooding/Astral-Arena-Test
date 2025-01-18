@@ -1,5 +1,6 @@
-import yaml
 import json
+
+import yaml
 
 config_path = "partial_config.yaml"
 

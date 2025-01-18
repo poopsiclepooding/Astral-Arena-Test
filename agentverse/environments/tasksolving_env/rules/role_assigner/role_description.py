@@ -6,8 +6,8 @@ from . import role_assigner_registry
 from .base import BaseRoleAssigner
 
 if TYPE_CHECKING:
-    from agentverse.message import RoleAssignerMessage
     from agentverse.agents import CriticAgent, RoleAssignerAgent
+    from agentverse.message import RoleAssignerMessage
 
 
 @role_assigner_registry.register("role_description")

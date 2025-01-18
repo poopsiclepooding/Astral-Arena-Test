@@ -1,7 +1,7 @@
 import json
 import os
-from agentverse.logging import logger
 
+from agentverse.logging import logger
 
 base_prompt = {
     "subject_parsing": """

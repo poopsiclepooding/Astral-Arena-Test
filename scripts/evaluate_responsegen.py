@@ -1,9 +1,11 @@
-import os
 import json
-from string import Template
+import os
 import time
+from string import Template
+
 from openai import OpenAI
 from tqdm import tqdm
+
 from agentverse.llms.openai import DEFAULT_CLIENT as client
 
 with open("./results.jsonl", "r") as f:
@@ -25,6 +27,7 @@ Answer: ('The better response is A' or 'The better response is B' or 'The better
 
 res = []
 eval = []
+
 
 def write_eval_to_file(file, skip=0):
     for idx, line in tqdm(enumerate(lines)):

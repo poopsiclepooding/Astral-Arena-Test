@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import logging
-import re
 import random
+import re
 from typing import TYPE_CHECKING, Any, List, Optional
 
 from . import order_registry as OrderRegistry
@@ -19,8 +19,9 @@ class SdeTeamGivenTestsOrder(BaseOrder):
     1 - code tester
     2 - code reviewer
     """
+
     next_agent_idx: int = 0
-    
+
     def get_next_agent_idx(self, environment: BaseEnvironment) -> List[int]:
         if self.next_agent_idx == 0:
             self.next_agent_idx = 1

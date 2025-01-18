@@ -89,11 +89,15 @@ class UI:
 
             yield (
                 *outputs,
-                gr.Button.update(interactive=not self.autoplay and self.turns_remain > 0),
+                gr.Button.update(
+                    interactive=not self.autoplay and self.turns_remain > 0
+                ),
                 gr.Button.update(interactive=self.autoplay and self.turns_remain > 0),
-                gr.Button.update(interactive=not self.autoplay and self.turns_remain > 0),
+                gr.Button.update(
+                    interactive=not self.autoplay and self.turns_remain > 0
+                ),
                 *[gr.Button.update(visible=statu) for statu in self.solution_status],
-                gr.Box.update(visible=any(self.solution_status))
+                gr.Box.update(visible=any(self.solution_status)),
             )
 
     def delay_gen_output(self):
@@ -103,7 +107,7 @@ class UI:
             gr.Button.update(interactive=False),
             gr.Button.update(interactive=False),
             *[gr.Button.update(visible=statu) for statu in self.solution_status],
-            gr.Box.update(visible=any(self.solution_status))
+            gr.Box.update(visible=any(self.solution_status)),
         )
 
         outputs = self.gen_output()
@@ -115,7 +119,7 @@ class UI:
             gr.Button.update(interactive=self.turns_remain > 0),
             gr.Button.update(interactive=self.turns_remain > 0),
             *[gr.Button.update(visible=statu) for statu in self.solution_status],
-            gr.Box.update(visible=any(self.solution_status))
+            gr.Box.update(visible=any(self.solution_status)),
         )
 
     def delay_reset(self):
@@ -128,7 +132,7 @@ class UI:
             gr.Button.update(interactive=False),
             gr.Button.update(interactive=True),
             *[gr.Button.update(visible=statu) for statu in self.solution_status],
-            gr.Box.update(visible=any(self.solution_status))
+            gr.Box.update(visible=any(self.solution_status)),
         )
 
     def reset(self, stu_num=0):
@@ -163,7 +167,7 @@ class UI:
             back_h, back_w, _ = background.shape
             stu_cnt = 0
             for h_begin, w_begin in itertools.product(
-                    range(800, back_h, 300), range(135, back_w - 200, 200)
+                range(800, back_h, 300), range(135, back_w - 200, 200)
             ):
                 stu_cnt += 1
                 img = cv2.imread(
@@ -192,9 +196,9 @@ class UI:
         if self.task == "prisoner_dilemma":
             img = cv2.imread("./imgs/speaking.png", cv2.IMREAD_UNCHANGED)
             if (
-                    len(self.messages) < 2
-                    or self.messages[-1][0] == 1
-                    or self.messages[-2][0] == 2
+                len(self.messages) < 2
+                or self.messages[-1][0] == 1
+                or self.messages[-2][0] == 2
             ):
                 background = cv2.imread("./imgs/prison/case_1.png")
                 if data[0]["message"] != "":
@@ -233,7 +237,7 @@ class UI:
                 img = cv2.imread("./imgs/speaking.png", cv2.IMREAD_UNCHANGED)
                 cover_img(background, img, (370, 1250))
             for h_begin, w_begin in itertools.product(
-                    range(800, back_h, 300), range(135, back_w - 200, 200)
+                range(800, back_h, 300), range(135, back_w - 200, 200)
             ):
                 stu_cnt += 1
                 if stu_cnt <= self.stu_num:
@@ -264,18 +268,24 @@ class UI:
         for message in messages:
             if self.task == "db_diag":
                 content_json: dict = message.content
-                content_json["diagnose"] = f"[{message.sender}]: {content_json['diagnose']}"
-                _format[self.agent_id[message.sender]]["message"] = json.dumps(content_json)
+                content_json["diagnose"] = (
+                    f"[{message.sender}]: {content_json['diagnose']}"
+                )
+                _format[self.agent_id[message.sender]]["message"] = json.dumps(
+                    content_json
+                )
             elif "sde" in self.task:
                 if message.sender == "code_tester":
                     pre_message, message_ = message.content.split("\n")
-                    message_ = "{}\n{}".format(pre_message, json.loads(message_)["feedback"])
-                    _format[self.agent_id[message.sender]]["message"] = "[{}]: {}".format(
-                        message.sender, message_
+                    message_ = "{}\n{}".format(
+                        pre_message, json.loads(message_)["feedback"]
+                    )
+                    _format[self.agent_id[message.sender]]["message"] = (
+                        "[{}]: {}".format(message.sender, message_)
                     )
                 else:
-                    _format[self.agent_id[message.sender]]["message"] = "[{}]: {}".format(
-                        message.sender, message.content
+                    _format[self.agent_id[message.sender]]["message"] = (
+                        "[{}]: {}".format(message.sender, message.content)
                     )
 
             else:
@@ -333,23 +343,44 @@ class UI:
                     for solu in solution:
                         if "query" in solu or "queries" in solu:
                             self.solution_status[0] = True
-                            solu = solu.replace("query", '<span style="color:yellow;">query</span>')
-                            solu = solu.replace("queries", '<span style="color:yellow;">queries</span>')
+                            solu = solu.replace(
+                                "query", '<span style="color:yellow;">query</span>'
+                            )
+                            solu = solu.replace(
+                                "queries", '<span style="color:yellow;">queries</span>'
+                            )
                         if "join" in solu:
                             self.solution_status[1] = True
-                            solu = solu.replace("join", '<span style="color:yellow;">join</span>')
+                            solu = solu.replace(
+                                "join", '<span style="color:yellow;">join</span>'
+                            )
                         if "index" in solu:
                             self.solution_status[2] = True
-                            solu = solu.replace("index", '<span style="color:yellow;">index</span>')
+                            solu = solu.replace(
+                                "index", '<span style="color:yellow;">index</span>'
+                            )
                         if "system configuration" in solu:
                             self.solution_status[3] = True
-                            solu = solu.replace("system configuration",
-                                                '<span style="color:yellow;">system configuration</span>')
-                        if "monitor" in solu or "Monitor" in solu or "Investigate" in solu:
+                            solu = solu.replace(
+                                "system configuration",
+                                '<span style="color:yellow;">system configuration</span>',
+                            )
+                        if (
+                            "monitor" in solu
+                            or "Monitor" in solu
+                            or "Investigate" in solu
+                        ):
                             self.solution_status[4] = True
-                            solu = solu.replace("monitor", '<span style="color:yellow;">monitor</span>')
-                            solu = solu.replace("Monitor", '<span style="color:yellow;">Monitor</span>')
-                            solu = solu.replace("Investigate", '<span style="color:yellow;">Investigate</span>')
+                            solu = solu.replace(
+                                "monitor", '<span style="color:yellow;">monitor</span>'
+                            )
+                            solu = solu.replace(
+                                "Monitor", '<span style="color:yellow;">Monitor</span>'
+                            )
+                            solu = solu.replace(
+                                "Investigate",
+                                '<span style="color:yellow;">Investigate</span>',
+                            )
                         msg = f"{msg}<br>{solu}"
                 if msg_json["knowledge"] != "":
                     msg = f'{msg}<hr style="margin: 5px 0"><span style="font-style: italic">{msg_json["knowledge"]}<span>'
@@ -364,7 +395,11 @@ class UI:
                 f"{msg}"
                 f"</div></div>" + message
             )
-        message = '<div id="divDetail" style="height:600px;overflow:auto;">' + message + "</div>"
+        message = (
+            '<div id="divDetail" style="height:600px;overflow:auto;">'
+            + message
+            + "</div>"
+        )
         return message
 
     def submit(self, message: str):
@@ -392,16 +427,28 @@ class UI:
                         stop_autoplay_btn = gr.Button(
                             "Stop Autoplay", interactive=False
                         )
-                        start_autoplay_btn = gr.Button("Start Autoplay", interactive=False)
+                        start_autoplay_btn = gr.Button(
+                            "Start Autoplay", interactive=False
+                        )
                     with gr.Box(visible=False) as solutions:
                         with gr.Column():
                             gr.HTML("Optimization Solutions:")
                             with gr.Row():
-                                rewrite_slow_query_btn = gr.Button("Rewrite Slow Query", visible=False)
-                                add_query_hints_btn = gr.Button("Add Query Hints", visible=False)
-                                update_indexes_btn = gr.Button("Update Indexes", visible=False)
-                                tune_parameters_btn = gr.Button("Tune Parameters", visible=False)
-                                gather_more_info_btn = gr.Button("Gather More Info", visible=False)
+                                rewrite_slow_query_btn = gr.Button(
+                                    "Rewrite Slow Query", visible=False
+                                )
+                                add_query_hints_btn = gr.Button(
+                                    "Add Query Hints", visible=False
+                                )
+                                update_indexes_btn = gr.Button(
+                                    "Update Indexes", visible=False
+                                )
+                                tune_parameters_btn = gr.Button(
+                                    "Tune Parameters", visible=False
+                                )
+                                gather_more_info_btn = gr.Button(
+                                    "Gather More Info", visible=False
+                                )
                 # text_output = gr.Textbox()
                 text_output = gr.HTML(self.reset()[1])
 
@@ -413,7 +460,12 @@ class UI:
                 user_msg = gr.Textbox()
                 submit_btn = gr.Button("Submit", variant="primary")
 
-                submit_btn.click(fn=self.submit, inputs=user_msg, outputs=[image_output, text_output], show_progress=False)
+                submit_btn.click(
+                    fn=self.submit,
+                    inputs=user_msg,
+                    outputs=[image_output, text_output],
+                    show_progress=False,
+                )
             else:
                 pass
 
@@ -431,7 +483,7 @@ class UI:
                     update_indexes_btn,
                     tune_parameters_btn,
                     gather_more_info_btn,
-                    solutions
+                    solutions,
                 ],
                 show_progress=False,
             )
@@ -453,7 +505,7 @@ class UI:
                     update_indexes_btn,
                     tune_parameters_btn,
                     gather_more_info_btn,
-                    solutions
+                    solutions,
                 ],
                 show_progress=False,
             )
@@ -478,7 +530,7 @@ class UI:
                     update_indexes_btn,
                     tune_parameters_btn,
                     gather_more_info_btn,
-                    solutions
+                    solutions,
                 ],
                 show_progress=False,
             )

@@ -1,18 +1,16 @@
 from __future__ import annotations
 
 import asyncio
-from colorama import Fore
-
-from agentverse.logging import get_logger
 import bdb
 from string import Template
 from typing import TYPE_CHECKING, List, Tuple
 
-from agentverse.message import EvaluatorMessage, Message
+from colorama import Fore
 
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
-
+from agentverse.logging import get_logger
+from agentverse.message import EvaluatorMessage, Message
 
 logger = get_logger()
 

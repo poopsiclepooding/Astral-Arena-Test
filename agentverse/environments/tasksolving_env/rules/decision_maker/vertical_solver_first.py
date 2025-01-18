@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 import asyncio
+from typing import TYPE_CHECKING, List
+
 from colorama import Fore
 
-from typing import TYPE_CHECKING, List
+from agentverse.logging import logger, typewriter_log
+from agentverse.message import Message
 
 from . import decision_maker_registry
 from .base import BaseDecisionMaker
-from agentverse.logging import typewriter_log, logger
-from agentverse.message import Message
 
 if TYPE_CHECKING:
-    from agentverse.agents import BaseAgent, SolverAgent, CriticAgent
+    from agentverse.agents import BaseAgent, CriticAgent, SolverAgent
     from agentverse.message import CriticMessage, SolverMessage
 
 
@@ -65,7 +67,9 @@ class VerticalSolverFirstDecisionMaker(BaseDecisionMaker):
                 logger.info("", "Consensus Reached!.", Fore.GREEN)
                 break
             self.broadcast_messages(agents, nonempty_reviews)
-            previous_plan = await agents[0].astep(previous_plan, advice, task_description)
+            previous_plan = await agents[0].astep(
+                previous_plan, advice, task_description
+            )
             logger.info("", f"Updated Plan:\n{previous_plan.content}", Fore.BLUE)
             self.broadcast_messages(agents, [previous_plan])
         result = previous_plan

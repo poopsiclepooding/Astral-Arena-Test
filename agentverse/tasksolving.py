@@ -1,13 +1,11 @@
 import asyncio
-import os
 import copy
-
 import logging
+import os
 
 from agentverse.environments.tasksolving_env.basic import BasicEnvironment
 from agentverse.initialization import load_agent, load_environment, prepare_task_config
 from agentverse.utils import AGENT_TYPES
-
 
 openai_logger = logging.getLogger("openai")
 openai_logger.setLevel(logging.WARNING)

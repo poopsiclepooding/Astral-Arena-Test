@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import asyncio
-from colorama import Fore
-
-from agentverse.logging import get_logger
 import bdb
 from string import Template
 from typing import TYPE_CHECKING, List, Tuple
 
-# from agentverse.environments import PipelineEnvironment
-from agentverse.message import SolverMessage, Message, CriticMessage
+from colorama import Fore
 
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
+from agentverse.logging import get_logger
+
+# from agentverse.environments import PipelineEnvironment
+from agentverse.message import CriticMessage, Message, SolverMessage
 from agentverse.utils import AgentCriticism
 
 logger = get_logger()
@@ -71,9 +71,11 @@ class SolverAgent(BaseAgent):
             logger.error(f"{self.name} failed to generate valid response.")
 
         message = SolverMessage(
-            content=""
-            if parsed_response is None
-            else parsed_response.return_values["output"],
+            content=(
+                ""
+                if parsed_response is None
+                else parsed_response.return_values["output"]
+            ),
             sender=self.name,
             receiver=self.get_receiver(),
         )

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, List
 
 from pydantic import BaseModel
 
 from . import describer_registry as DescriberRegistry
-from abc import abstractmethod
 
 if TYPE_CHECKING:
     from agentverse.environments import BaseEnvironment

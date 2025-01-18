@@ -1,7 +1,8 @@
-from .dataloader import DataLoader
-from . import dataloader_registry
 import json
 import re
+
+from . import dataloader_registry
+from .dataloader import DataLoader
 
 
 @dataloader_registry.register("tasksolving/gsm8k")
@@ -17,6 +18,6 @@ class GSM8KLoader(DataLoader):
                 self.examples.append(
                     {
                         "input": line["question"],
-                        "answer": line["answer"].split('#### ')[-1],
+                        "answer": line["answer"].split("#### ")[-1],
                     }
                 )

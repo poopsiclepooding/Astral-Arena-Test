@@ -1,16 +1,18 @@
 from __future__ import annotations
-import json
-import asyncio
-from copy import deepcopy
-from colorama import Fore
-from itertools import cycle
 
+import asyncio
+import json
+from copy import deepcopy
+from itertools import cycle
 from typing import TYPE_CHECKING, List
+
+from colorama import Fore
+
+from agentverse.logging import logger
+from agentverse.message import Message, SolverMessage
 
 from . import decision_maker_registry
 from .base import BaseDecisionMaker
-from agentverse.logging import logger
-from agentverse.message import SolverMessage, Message
 
 if TYPE_CHECKING:
     from agentverse.agents.base import BaseAgent

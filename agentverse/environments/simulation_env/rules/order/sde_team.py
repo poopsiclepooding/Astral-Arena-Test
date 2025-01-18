@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import logging
-import re
 import random
+import re
 from typing import TYPE_CHECKING, Any, List, Optional
 
 from . import order_registry as OrderRegistry
@@ -14,14 +14,14 @@ if TYPE_CHECKING:
 
 @OrderRegistry.register("sde_team")
 class SdeTeamOrder(BaseOrder):
-    """The order for a code problem solving
-    """
+    """The order for a code problem solving"""
+
     next_agent_idx: int = 2
-    
+
     def get_next_agent_idx(self, environment: BaseEnvironment) -> List[int]:
         if self.next_agent_idx == 2:
             self.next_agent_idx = 0
-            return [2] * 5 # TODO set the number in yaml
+            return [2] * 5  # TODO set the number in yaml
         elif self.next_agent_idx == 0:
             self.next_agent_idx = 1
             return [0]

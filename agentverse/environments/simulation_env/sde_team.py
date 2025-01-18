@@ -1,19 +1,18 @@
 import asyncio
+import json
 import logging
 from typing import Any, Dict, List
-import json
 
 from agentverse.agents.simulation_agent.conversation import BaseAgent
-from agentverse.logging import logger
 
 # from agentverse.environments.simulation_env.rules.base import Rule
 from agentverse.environments.simulation_env.rules.base import SimulationRule as Rule
+from agentverse.initialization import load_tools
+from agentverse.logging import logger
 from agentverse.message import Message
 
 from .. import env_registry as EnvironmentRegistry
 from ..base import BaseEnvironment
-
-from agentverse.initialization import load_tools
 
 
 @EnvironmentRegistry.register("sde_team")

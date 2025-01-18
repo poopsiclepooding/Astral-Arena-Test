@@ -1,7 +1,8 @@
-from .dataloader import DataLoader
-from . import dataloader_registry
 import json
 import re
+
+from . import dataloader_registry
+from .dataloader import DataLoader
 
 
 @dataloader_registry.register("tasksolving/mgsm/gpt-4")

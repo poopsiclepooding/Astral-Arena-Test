@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
-import numpy as np
 import json
+from typing import TYPE_CHECKING, List
+
+import numpy as np
 
 from agentverse.message import Message
 

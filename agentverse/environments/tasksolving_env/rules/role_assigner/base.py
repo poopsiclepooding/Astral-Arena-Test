@@ -1,16 +1,16 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from typing import TYPE_CHECKING, List, Tuple
-
-from agentverse.agents import BaseAgent
 
 from pydantic import BaseModel
 
-from abc import abstractmethod
+from agentverse.agents import BaseAgent
+
 from . import role_assigner_registry
 
 if TYPE_CHECKING:
-    from agentverse.agents import RoleAssignerAgent, CriticAgent
+    from agentverse.agents import CriticAgent, RoleAssignerAgent
 
 
 class BaseRoleAssigner(BaseModel):

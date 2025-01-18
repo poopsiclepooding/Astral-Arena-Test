@@ -1,18 +1,17 @@
 from __future__ import annotations
 
+import json
 import re
 from abc import abstractmethod
-import json
-from typing import Union, List, Tuple, NamedTuple, TYPE_CHECKING
+from typing import TYPE_CHECKING, List, NamedTuple, Tuple, Union
 
-from . import output_parser_registry
-
-from agentverse.utils import AgentAction, AgentFinish, AgentCriticism
+from pydantic import BaseModel
 
 from agentverse.llms import LLMResult
 from agentverse.logging import logger
+from agentverse.utils import AgentAction, AgentCriticism, AgentFinish
 
-from pydantic import BaseModel
+from . import output_parser_registry
 
 if TYPE_CHECKING:
     from agentverse.agents.base import BaseAgent

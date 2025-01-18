@@ -1,15 +1,17 @@
-import io
-import sys
 import ast
-import json
-import astunparse
 import concurrent.futures
+import io
+import json
+import sys
 import traceback
+
+import astunparse
 
 
 def get_call_str(assert_statement: str) -> str:
-    call_str = ast.parse(assert_statement).body[0].test.left # type: ignore
+    call_str = ast.parse(assert_statement).body[0].test.left  # type: ignore
     return astunparse.unparse(call_str).strip()
+
 
 def get_output(func: str, assert_statement: str) -> str:
     try:
@@ -23,6 +25,7 @@ def get_output(func: str, assert_statement: str) -> str:
     except:
         return "get_call_str error"
 
+
 def worker(code, globals=None, locals=None):
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -30,8 +33,8 @@ def worker(code, globals=None, locals=None):
         locals = {}
     try:
         # TODO: exec(code, globals, locals) could be buggy
-        # In cases where both import statement and function exits in the code, if the locals are given, 
-        # the code will not find the imported package. 
+        # In cases where both import statement and function exits in the code, if the locals are given,
+        # the code will not find the imported package.
         # For example,
         # code = "import math\ndef f(x):\n\treturn math.pow(x, 2)\nassert f(2) == 4"
         # It will return "NameError: name 'math' is not defined"
@@ -43,10 +46,10 @@ def worker(code, globals=None, locals=None):
         return f"Error: {trace_str}", globals, locals
     finally:
         sys.stdout = old_stdout  # restore the original stdout
-        
+
+
 def execute_code(code: str) -> str:
-    """Execute a snippet of python code and return the output or the error message.
-    """
+    """Execute a snippet of python code and return the output or the error message."""
     timeout = 5
     try:
         with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -56,14 +59,14 @@ def execute_code(code: str) -> str:
     except concurrent.futures.TimeoutError:
         return "Timeout"
 
+
 def execute_unit_tests(func_impl: str, tests: str) -> str:
-    """Run a python function on a bunch of unit tests tests and return detailed feedback.
-    """
+    """Run a python function on a bunch of unit tests tests and return detailed feedback."""
     # tests = eval(tests)
     # assert type(tests) == list
 
     # Combine function code and assert statement
-    func_test_list = [f'{func_impl}\n{test}' for test in tests]
+    func_test_list = [f"{func_impl}\n{test}" for test in tests]
 
     # Run the tests and collect the results
     success_tests = []
@@ -84,14 +87,12 @@ def execute_unit_tests(func_impl: str, tests: str) -> str:
             is_passing = False
         else:
             success_tests += [tests[i]]
-                
+
     feedback = "Tested passed:\n\n"
     for test in success_tests:
         feedback += f"{test}\n\n"
     feedback += "Tests failed:\n\n"
     for test in failed_tests:
         feedback += f"{test}\n\n"
-        
-    return json.dumps({"is_passing": is_passing, 
-            "feedback": feedback})
 
+    return json.dumps({"is_passing": is_passing, "feedback": feedback})

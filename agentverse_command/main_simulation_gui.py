@@ -1,6 +1,7 @@
 import os
-from agentverse.gui import GUI
 from argparse import ArgumentParser
+
+from agentverse.gui import GUI
 
 parser = ArgumentParser()
 parser.add_argument("--task", type=str, default="simulation/nlp_classroom_9players")
@@ -20,13 +21,19 @@ parser.add_argument("--debug", action="store_true", default=False, help="Debug m
 
 args = parser.parse_args()
 
+
 def cli_main():
     ui = GUI(
         args.task,
         args.tasks_dir,
-        ui_kwargs={"share": args.share, "server_name": args.server_name, "debug": args.debug},
+        ui_kwargs={
+            "share": args.share,
+            "server_name": args.server_name,
+            "debug": args.debug,
+        },
     )
     ui.launch()
+
 
 if __name__ == "__main__":
     cli_main()

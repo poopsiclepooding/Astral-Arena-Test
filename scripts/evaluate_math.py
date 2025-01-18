@@ -1,8 +1,8 @@
-import re
 import json
+import re
 import subprocess
-from importlib import reload
 from argparse import ArgumentParser
+from importlib import reload
 
 parser = ArgumentParser()
 parser.add_argument("--path", type=str, required=True)

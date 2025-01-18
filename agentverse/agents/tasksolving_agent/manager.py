@@ -1,22 +1,19 @@
 from __future__ import annotations
 
 import asyncio
-from colorama import Fore
-
-from agentverse.logging import get_logger
 import bdb
+import random
 from string import Template
 from typing import TYPE_CHECKING, List, Tuple
 
-from agentverse.message import Message
+from colorama import Fore
+from rapidfuzz import fuzz
 
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
+from agentverse.logging import get_logger
+from agentverse.message import Message
 from agentverse.utils import AgentCriticism
-
-import random
-from rapidfuzz import fuzz
-
 
 logger = get_logger()
 

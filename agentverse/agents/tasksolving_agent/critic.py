@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-import json
-from colorama import Fore
-from agentverse.logging import get_logger
 import bdb
+import json
 from string import Template
 from typing import TYPE_CHECKING, List, Union
 
-from agentverse.message import Message
+from colorama import Fore
 
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
+from agentverse.logging import get_logger
+from agentverse.message import CriticMessage, Message
 from agentverse.utils import AgentCriticism
-from agentverse.message import CriticMessage
 
 logger = get_logger()
 

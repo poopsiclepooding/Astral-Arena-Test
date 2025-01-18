@@ -1,13 +1,14 @@
+import asyncio
+import json
 import logging
 import os
-import json
 import shutil
+from argparse import ArgumentParser
+
+from agentverse.logging import get_logger
 
 # from agentverse.agentverse import AgentVerse
 from agentverse.tasksolving import TaskSolving
-from agentverse.logging import get_logger
-from argparse import ArgumentParser
-import asyncio
 from dataloader import dataloader_registry
 
 parser = ArgumentParser()

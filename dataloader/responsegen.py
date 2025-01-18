@@ -1,6 +1,7 @@
-from .dataloader import DataLoader
-from . import dataloader_registry
 import json
+
+from . import dataloader_registry
+from .dataloader import DataLoader
 
 
 @dataloader_registry.register("tasksolving/responsegen/gpt-3.5")

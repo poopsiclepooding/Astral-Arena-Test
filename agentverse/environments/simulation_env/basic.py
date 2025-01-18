@@ -1,7 +1,4 @@
 import asyncio
-
-# import logging
-from agentverse.logging import get_logger
 from typing import Any, Dict, List
 
 # from agentverse.agents.agent import Agent
@@ -9,6 +6,9 @@ from agentverse.agents.simulation_agent.conversation import BaseAgent
 
 # from agentverse.environments.simulation_env.rules.base import Rule
 from agentverse.environments.simulation_env.rules.base import SimulationRule as Rule
+
+# import logging
+from agentverse.logging import get_logger
 from agentverse.message import Message
 
 logger = get_logger()

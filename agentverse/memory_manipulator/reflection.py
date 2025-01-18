@@ -1,27 +1,25 @@
 from __future__ import annotations
-from typing import List, Union, Optional, Any, TYPE_CHECKING
-from collections import defaultdict
-
-from pydantic import Field
-import numpy as np
-from datetime import datetime as dt
 
 import re
+from collections import defaultdict
+from datetime import datetime as dt
+from typing import TYPE_CHECKING, Any, List, Optional, Union
 
-from agentverse.llms.openai import get_embedding
+import numpy as np
+from pydantic import Field
 from sklearn.metrics.pairwise import cosine_similarity
 
-from agentverse.message import Message
-from agentverse.memory import BaseMemory
-
+from agentverse.llms.openai import get_embedding
 from agentverse.logging import logger
+from agentverse.memory import BaseMemory
+from agentverse.message import Message
 
 from . import memory_manipulator_registry
 from .base import BaseMemoryManipulator
 
 if TYPE_CHECKING:
-    from agentverse.memory import VectorStoreMemory
     from agentverse.agents.base import BaseAgent
+    from agentverse.memory import VectorStoreMemory
 
 
 IMPORTANCE_PROMPT = """On the scale of 1 to 10, where 1 is purely mundane \

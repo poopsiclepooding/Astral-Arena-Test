@@ -2,19 +2,16 @@ from typing import List, Union
 
 from pydantic import Field
 
-from agentverse.message import Message
 from agentverse.llms import BaseLLM
-from agentverse.llms.openai import get_embedding, OpenAIChat
-
+from agentverse.llms.openai import OpenAIChat, get_embedding
+from agentverse.message import Message
 
 from . import memory_registry
 from .base import BaseMemory
 
 
-
 @memory_registry.register("vectorstore")
 class VectorStoreMemory(BaseMemory):
-
     """
 
     The main difference of this class with chat_history is that this class treat memory as a dict
@@ -49,9 +46,11 @@ class VectorStoreMemory(BaseMemory):
         if add_sender_prefix:
             return "\n".join(
                 [
-                    f"[{message.sender}]: {message.content}"
-                    if message.sender != ""
-                    else message.content
+                    (
+                        f"[{message.sender}]: {message.content}"
+                        if message.sender != ""
+                        else message.content
+                    )
                     for message in self.messages
                 ]
             )
@@ -60,4 +59,3 @@ class VectorStoreMemory(BaseMemory):
 
     def reset(self) -> None:
         self.messages = []
-

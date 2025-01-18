@@ -2,13 +2,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List, Tuple
 
-from . import updater_registry as UpdaterRegistry
-from .base import BaseUpdater
 from agentverse.message import Message
 
+from . import updater_registry as UpdaterRegistry
+from .base import BaseUpdater
+
 if TYPE_CHECKING:
-    from agentverse.environments import BaseEnvironment
     from agentverse.agents import BaseAgent
+    from agentverse.environments import BaseEnvironment
 
 
 @UpdaterRegistry.register("sde_team")

@@ -1,20 +1,22 @@
-import json
 import ast
-from openai import OpenAI
-from string import Template
-from colorama import Fore
-from aiohttp import ClientSession
+import asyncio
+import json
 from copy import deepcopy
+from string import Template
 from typing import TYPE_CHECKING, Any, List, Tuple
+
 import httpx
+from aiohttp import ClientSession
+from colorama import Fore
+from openai import OpenAI
+
 from agentverse.agents import ExecutorAgent
-from agentverse.message import Message, ExecutorMessage, SolverMessage
+from agentverse.llms.openai import DEFAULT_CLIENT_ASYNC as client_async
+from agentverse.llms.utils.jsonrepair import JsonRepair
 from agentverse.logging import logger
+from agentverse.message import ExecutorMessage, Message, SolverMessage
 
 from . import BaseExecutor, executor_registry
-import asyncio
-from agentverse.llms.utils.jsonrepair import JsonRepair
-from agentverse.llms.openai import DEFAULT_CLIENT_ASYNC as client_async
 
 url = "http://127.0.0.1:8080"
 SUMMARIZE_PROMPT = """Here is the text gathered from a webpage, and a question you need to answer from the webpage. 
@@ -300,7 +302,9 @@ class ToolUsingExecutor(BaseExecutor):
             }
         for i in range(3):
             try:
-                async with httpx.AsyncClient(cookies=cookies, trust_env=True) as session:
+                async with httpx.AsyncClient(
+                    cookies=cookies, trust_env=True
+                ) as session:
                     if cookies is None:
                         async with session.post(
                             f"{url}/get_cookie", timeout=30

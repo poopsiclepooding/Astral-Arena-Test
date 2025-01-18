@@ -1,31 +1,30 @@
-import logging
-import json
 import ast
+import json
+import logging
 import os
+from typing import Dict, List, Optional, Union
+
 import numpy as np
 from aiohttp import ClientSession
-from typing import Dict, List, Optional, Union
+from pydantic import Field
 from tenacity import (
     retry,
+    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
-    retry_if_exception_type,
 )
-from pydantic import Field
 
 from agentverse.llms.base import LLMResult
 from agentverse.logging import logger
 from agentverse.message import Message
 
-from . import llm_registry, LOCAL_LLMS, LOCAL_LLMS_MAPPING
+from . import LOCAL_LLMS, LOCAL_LLMS_MAPPING, llm_registry
 from .base import BaseChatModel, BaseModelArgs
 from .utils.jsonrepair import JsonRepair
 from .utils.llm_server_utils import get_llm_server_modelname
 
 try:
-    from openai import OpenAI, AsyncOpenAI
-    from openai import OpenAIError
-    from openai import AzureOpenAI, AsyncAzureOpenAI
+    from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI, OpenAIError
 except ImportError:
     is_openai_available = False
     logger.warn(
@@ -103,9 +102,6 @@ class OpenAIChatArgs(BaseModelArgs):
     stop: Optional[Union[str, List]] = Field(default=None)
     presence_penalty: int = Field(default=0)
     frequency_penalty: int = Field(default=0)
-
-
-
 
 
 # To support your own local LLMs, register it here and add it into LOCAL_LLMS.

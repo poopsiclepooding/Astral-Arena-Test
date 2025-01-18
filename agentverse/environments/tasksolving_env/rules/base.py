@@ -1,8 +1,9 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Dict, List, Tuple, Union, Optional
+
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
 
 from agentverse.agents.base import BaseAgent
-from agentverse.utils import AGENT_TYPES
+from agentverse.environments import BaseRule
 from agentverse.environments.tasksolving_env.rules.decision_maker import (
     BaseDecisionMaker,
     decision_maker_registry,
@@ -19,10 +20,10 @@ from agentverse.environments.tasksolving_env.rules.role_assigner import (
     BaseRoleAssigner,
     role_assigner_registry,
 )
-from agentverse.environments import BaseRule
+from agentverse.utils import AGENT_TYPES
 
 if TYPE_CHECKING:
-    from agentverse.message import SolverMessage, ExecutorMessage
+    from agentverse.message import ExecutorMessage, SolverMessage
 
 
 class TasksolvingRule(BaseRule):

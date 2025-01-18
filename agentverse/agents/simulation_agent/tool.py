@@ -4,17 +4,15 @@ from typing import List, NamedTuple, Optional, Union
 from langchain.tools import BaseTool
 from pydantic import Field
 
-
+from agentverse.agents import agent_registry
+from agentverse.agents.base import BaseAgent
+from agentverse.logging import logger
 from agentverse.memory import BaseMemory, ChatHistoryMemory
 from agentverse.message import Message
 from agentverse.utils import AgentAction, AgentFinish
-from agentverse.logging import logger
 
 # from . import agent_registry
 # from .base import BaseAgent
-
-from agentverse.agents import agent_registry
-from agentverse.agents.base import BaseAgent
 
 
 class ToolNotExistError(BaseException):
@@ -63,9 +61,11 @@ class ToolAgent(BaseAgent):
         self._update_tool_memory(tool_observation)
 
         message = Message(
-            content=""
-            if parsed_response is None
-            else parsed_response.return_values["output"],
+            content=(
+                ""
+                if parsed_response is None
+                else parsed_response.return_values["output"]
+            ),
             sender=self.name,
             receiver=self.get_receiver(),
         )
@@ -105,9 +105,11 @@ class ToolAgent(BaseAgent):
         self._update_tool_memory(tool_observation)
 
         message = Message(
-            content=""
-            if parsed_response is None
-            else parsed_response.return_values["output"],
+            content=(
+                ""
+                if parsed_response is None
+                else parsed_response.return_values["output"]
+            ),
             sender=self.name,
             receiver=self.get_receiver(),
         )

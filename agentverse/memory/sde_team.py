@@ -15,6 +15,7 @@ class SdeTeamMemory(BaseMemory):
     It is a simple memory that only stores the most recent info in the buffer.
     TODO: add summarized history
     """
+
     buffer: str = Field(default="")
 
     def add_message(self, messages: List[Message]) -> None:

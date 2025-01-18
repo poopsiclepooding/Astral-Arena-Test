@@ -21,7 +21,7 @@ ESCAPE_CHARACTERS = {
     "f": "\f",
     "n": "\n",
     "r": "\r",
-    "t": "\t"
+    "t": "\t",
     # note that \u is handled separately in parseString()
 }
 

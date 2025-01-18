@@ -7,7 +7,7 @@ from .base import BaseEvaluator
 
 if TYPE_CHECKING:
     from agentverse.agents import EvaluatorAgent
-    from agentverse.message import EvaluatorMessage, SolverMessage, ExecutorMessage
+    from agentverse.message import EvaluatorMessage, ExecutorMessage, SolverMessage
 
 
 @evaluator_registry.register("basic")

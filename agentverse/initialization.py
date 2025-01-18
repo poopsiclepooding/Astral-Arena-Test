@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import os
-from typing import Dict, List, TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict, List
 
 import yaml
+
 from agentverse.logging import logger
 
 try:
@@ -13,13 +14,11 @@ except:
         "BMTools is not installed, tools in the simulation environment cannot be used. To install BMTools, please follow the instruction in the README.md file. If you aren't running a *simulation* case with tool, you can ignore this warning."
     )
 
-from agentverse.llms import llm_registry
-
 from agentverse.agents import agent_registry
 from agentverse.environments import BaseEnvironment, env_registry
+from agentverse.llms import llm_registry
 from agentverse.memory import memory_registry
 from agentverse.memory_manipulator import memory_manipulator_registry
-
 from agentverse.output_parser import output_parser_registry
 
 if TYPE_CHECKING:

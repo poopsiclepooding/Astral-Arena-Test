@@ -3,6 +3,7 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, List, Optional
 
+from agentverse.environments import BaseRule
 from agentverse.environments.simulation_env.rules.describer import (
     BaseDescriber,
     describer_registry,
@@ -20,7 +21,6 @@ from agentverse.environments.simulation_env.rules.visibility import (
     BaseVisibility,
     visibility_registry,
 )
-from agentverse.environments import BaseRule
 
 if TYPE_CHECKING:
     from agentverse.environments.base import BaseEnvironment

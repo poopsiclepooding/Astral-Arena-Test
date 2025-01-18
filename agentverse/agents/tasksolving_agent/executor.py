@@ -1,17 +1,17 @@
 from __future__ import annotations
 
-from agentverse.logging import get_logger
-from colorama import Fore
 import bdb
 from string import Template
-from typing import TYPE_CHECKING, List, Any
+from typing import TYPE_CHECKING, Any, List
 
-from agentverse.message import ExecutorMessage, Message, SolverMessage
-from agentverse.utils import AgentFinish, AgentAction
+import requests
+from colorama import Fore
 
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
-import requests
+from agentverse.logging import get_logger
+from agentverse.message import ExecutorMessage, Message, SolverMessage
+from agentverse.utils import AgentAction, AgentFinish
 
 logger = get_logger()
 

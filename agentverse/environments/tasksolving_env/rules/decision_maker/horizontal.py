@@ -1,14 +1,15 @@
 from __future__ import annotations
+
 import asyncio
+from typing import TYPE_CHECKING, List
+
 from colorama import Fore
 
-from typing import TYPE_CHECKING, List
+from agentverse.logging import logger
+from agentverse.message import Message
 
 from . import decision_maker_registry
 from .base import BaseDecisionMaker
-from agentverse.logging import logger
-
-from agentverse.message import Message
 
 if TYPE_CHECKING:
     from agentverse.agents.base import BaseAgent
