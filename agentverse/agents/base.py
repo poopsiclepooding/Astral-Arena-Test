@@ -1,4 +1,3 @@
-import logging
 from abc import abstractmethod
 from typing import List, NamedTuple, Set, Union
 from string import Template

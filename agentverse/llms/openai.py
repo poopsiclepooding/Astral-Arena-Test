@@ -105,42 +105,7 @@ class OpenAIChatArgs(BaseModelArgs):
     frequency_penalty: int = Field(default=0)
 
 
-# class OpenAICompletionArgs(OpenAIChatArgs):
-#     model: str = Field(default="text-davinci-003")
-#     suffix: str = Field(default="")
-#     best_of: int = Field(default=1)
 
-
-# @llm_registry.register("text-davinci-003")
-# class OpenAICompletion(BaseCompletionModel):
-#     args: OpenAICompletionArgs = Field(default_factory=OpenAICompletionArgs)
-
-#     def __init__(self, max_retry: int = 3, **kwargs):
-#         args = OpenAICompletionArgs()
-#         args = args.dict()
-#         for k, v in args.items():
-#             args[k] = kwargs.pop(k, v)
-#         if len(kwargs) > 0:
-#             logging.warning(f"Unused arguments: {kwargs}")
-#         super().__init__(args=args, max_retry=max_retry)
-
-#     def generate_response(self, prompt: str) -> LLMResult:
-#         response = openai.Completion.create(prompt=prompt, **self.args.dict())
-#         return LLMResult(
-#             content=response["choices"][0]["text"],
-#             send_tokens=response["usage"]["prompt_tokens"],
-#             recv_tokens=response["usage"]["completion_tokens"],
-#             total_tokens=response["usage"]["total_tokens"],
-#         )
-
-#     async def agenerate_response(self, prompt: str) -> LLMResult:
-#         response = await openai.Completion.acreate(prompt=prompt, **self.args.dict())
-#         return LLMResult(
-#             content=response["choices"][0]["text"],
-#             send_tokens=response["usage"]["prompt_tokens"],
-#             recv_tokens=response["usage"]["completion_tokens"],
-#             total_tokens=response["usage"]["total_tokens"],
-#         )
 
 
 # To support your own local LLMs, register it here and add it into LOCAL_LLMS.
