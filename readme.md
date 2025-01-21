@@ -5,13 +5,6 @@
 <img src="./imgs/Arena Banner.png" width="512">
 </p>
 
-<p align="center">
-    【<a href="https://arxiv.org/abs/2308.10848">Paper</a>】 
-</p>
-
-<p align="center">
-    【English | <a href="README_zh.md">Chinese</a>】 
-</p>
 
 ## 🌌 What is Astral Arena Test?
 
@@ -57,14 +50,6 @@ Users can design their own avatars and personalize various in-game elements. Thi
 4. **Data-Driven Insights**
 
 Embedded analytics continuously monitor user interactions and gameplay, providing detailed feedback and insights. These analytics help players refine their skills and also aid developers in enhancing the platform’s functionality.
-
-5. **Community Platform**
-
-Astral Arena Test incorporates social tools to build a vibrant community. Features such as leaderboards, team-based challenges, and collaborative events encourage competition and camaraderie among users.
-
-6. **Real-Time Feedback Loop**
-
-The system ensures seamless communication between the platform and users. Feedback collected from interactions directly influences updates and refinements, creating a responsive and evolving ecosystem.
 
 
 # 🚀 Getting Started
