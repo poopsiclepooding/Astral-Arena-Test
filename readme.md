@@ -1,22 +1,8 @@
 # <div align="center">🤖 Astral Arena Test 🪐</div>
 
-<p align="center">
-    <a href="https://www.python.org/downloads/release/python-3916/">
-        <img alt="Python Version" src="https://img.shields.io/badge/python-3.9+-blue.svg">
-    </a>
-    <a href="https://github.com/psf/black">
-        <img alt="Code Style: Black" src="https://img.shields.io/badge/code%20style-black-black">
-    </a>
-    <a href="https://huggingface.co/AgentVerse">
-        <img alt="HuggingFace" src="https://img.shields.io/badge/hugging_face-play-yellow">
-    </a>
-    <a href="https://discord.gg/gDAXfjMw">
-        <img alt="Discord" src="https://img.shields.io/badge/AgentVerse-Discord-purple?style=flat">
-    </a>
-</p>
 
 <p align="center">
-<img src="./imgs/title.png" width="512">
+<img src="./imgs/Arena Banner.png" width="512">
 </p>
 
 <p align="center">
@@ -27,11 +13,11 @@
     【English | <a href="README_zh.md">Chinese</a>】 
 </p>
 
-## What is Astral Arena Test?
+## 🌌 What is Astral Arena Test?
 
 Astral Arena Test is a groundbreaking framework designed to pioneer advanced multi-agent systems in virtual environments. Our platform uniquely combines two powerful frameworks: task-solving and simulation, enabling unprecedented opportunities for research and development in artificial intelligence. At its core, Astral Arena Test provides a robust infrastructure for deploying multiple LLM-based agents in various applications, from educational simulations to complex problem-solving scenarios.
 
-## Vision
+## 🚀 Our Vision
 
 Our vision extends beyond creating just another multi-agent framework. We aim to:
 
@@ -42,7 +28,7 @@ Our vision extends beyond creating just another multi-agent framework. We aim to
 5. **Drive Standardization**: Establish best practices and patterns for multi-agent system development
 
 
-## Why Astral Arena Test?
+## 🌍 Why Astral Arena Test?
 
 In the rapidly evolving landscape of artificial intelligence, multi-agent systems represent the next frontier in achieving more sophisticated and nuanced AI behaviors. Astral Arena Test addresses several critical needs in this space:
 
@@ -51,6 +37,35 @@ In the rapidly evolving landscape of artificial intelligence, multi-agent system
 3. **Flexibility**: The platform supports various LLM backends, from OpenAI's models to local implementations like LLaMA, giving researchers and developers complete control over their agent implementations.
 4. **Research-Ready**: Built with academic and industrial research in mind, Astral Arena Test provides comprehensive tools for experimenting with agent behaviors, interactions, and emergent phenomena.
 5. **Production-Grade**: While maintaining research flexibility, the framework is robust enough for production deployments, with support for both CLI and GUI interfaces.
+
+
+## 🧠 How It Works
+Astral Arena Test operates by combining innovative technologies, a well-designed simulation environment, and robust community features. Here’s a deeper dive into how the system functions:
+
+1. **Simulation Environment**
+
+At the heart of the project is a meticulously crafted virtual arena that provides users with an immersive and interactive space. The environment is designed with adaptive mechanics, ensuring a fresh experience every time users engage.
+
+2. **Dynamic Challenges**
+
+The platform offers real-time challenges that adapt to user performance and choices. These challenges are algorithmically generated to test a range of skills, such as strategy, reflexes, and collaboration.
+
+3. **Customizable Avatars and Elements**
+
+Users can design their own avatars and personalize various in-game elements. This level of customization fosters a sense of ownership and deeper engagement with the platform.
+
+4. **Data-Driven Insights**
+
+Embedded analytics continuously monitor user interactions and gameplay, providing detailed feedback and insights. These analytics help players refine their skills and also aid developers in enhancing the platform’s functionality.
+
+5. **Community Platform**
+
+Astral Arena Test incorporates social tools to build a vibrant community. Features such as leaderboards, team-based challenges, and collaborative events encourage competition and camaraderie among users.
+
+6. **Real-Time Feedback Loop**
+
+The system ensures seamless communication between the platform and users. Feedback collected from interactions directly influences updates and refinements, creating a responsive and evolving ecosystem.
+
 
 # 🚀 Getting Started
 
